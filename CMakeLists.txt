@@ -8,7 +8,15 @@ set(GLFW_BUILD_TESTS OFF CACHE INTERNAL "" FORCE)
 set(GLFW_INSTALL OFF CACHE INTERNAL "" FORCE)
 add_subdirectory(glfw)
 
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME}
+    main.cpp
+    glad/src/glad.c
+)
+
+target_include_directories(${PROJECT_NAME} PRIVATE
+    glad/include
+)
+
 if(WIN32)
     target_link_libraries(${PROJECT_NAME} PRIVATE glfw opengl32)
 else()
